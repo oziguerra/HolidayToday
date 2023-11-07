@@ -3,14 +3,33 @@
 
 <!-- Body -->
 <%if (locals.countries) { %>
-    <form action="/" id="form" class="form" method="POST"></form>
+    <form action="/" id="form" class="form" method="POST">
     <select name="country" class="form-select">
     <% countries.forEach(country => { %>
-        <option value="<%= "country.iso-3166" %>"> <%= country.country_name %></option>
+        <option value="<%= country["iso-3166"] %>"> <%= country.country_name %></option>
     <% }) %>
 <% } %>
     </select>
     <button type="submit" class="form-submit">Bring me the Holidays!</button>
+</form>
 
+<%if (locals.countryHolidays) { %>
+    <table>
+        <tr>
+            <th>Holiday Name</th>
+            <th>Holiday Description</th>
+            <th>Holiday Date</th>
+        </tr>
+        <% countryHolidays.forEach(holiday => { %>
+            <tr>
+                <td><%= holiday.name %></td>
+                <td><%= holiday.description %></td>
+                <td><%= holiday.date.datetime.day %>, <%= holiday.date.datetime.month %>, <%= holiday.date.datetime.year %></td>
+            </tr>
+        <% }) %>
+    </table>
+
+    
+<% } %>
 <!-- Footer -->
 <%- include("partials/footer.ejs") %>
