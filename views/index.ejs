@@ -1,0 +1,16 @@
+<!-- Header -->
+<%- include("partials/header.ejs") %>
+
+<!-- Body -->
+<%if (locals.countries) { %>
+    <form action="/" id="form" class="form" method="POST"></form>
+    <select name="country" class="form-select">
+    <% countries.forEach(country => { %>
+        <option value="<%= "country.iso-3166" %>"> <%= country.country_name %></option>
+    <% }) %>
+<% } %>
+    </select>
+    <button type="submit" class="form-submit">Bring me the Holidays!</button>
+
+<!-- Footer -->
+<%- include("partials/footer.ejs") %>
